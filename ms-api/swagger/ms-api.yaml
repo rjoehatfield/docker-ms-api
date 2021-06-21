@@ -1,0 +1,227 @@
+openapi: 3.0.1
+info:
+  title: "ms-api API"
+  version: v1
+paths:
+  "/test":
+    get:
+      summary: Get Test
+      tags:
+      - Test
+      responses:
+        '200':
+          description: Hello World
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hello:
+                    type: string
+                    example: world
+                required:
+                - hello
+    post:
+      summary: Create Test
+      tags:
+      - Test
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                hello:
+                  type: string
+                  example: "world"
+      responses:
+        '201':
+          description: Create Test response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Created"
+                required:
+                - message
+  "/check":
+    get:
+      summary: Get Uptime
+      tags:
+      - Check
+      responses:
+        '200':
+          description: Uptime response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  uptime:
+                    type: string
+                required:
+                - uptime
+  /users:
+    get:
+      summary: Get users
+      tags: 
+        - Users
+      responses:
+        '200':
+          description: Users response
+          content:
+            applicaiton/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    email:
+                      type: string
+                    created_at:
+                      type: string
+                    updated_at:
+                      type: string
+                  required:
+                    - name
+                    - email
+                    - created_at
+                    - updated_at
+    post:
+      summary: Create user
+      tags:
+        - Users
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+              required:
+                - name
+                - email
+      responses:
+        '201':
+          description: The User was created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: number
+                  name:
+                    type: string
+                  email:
+                    type: string
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+        '422':
+          description: Unprocessable Entity
+  /users/{user-id}:
+    put:
+      summary: Update user
+      tags:
+        - Users
+      parameters:
+        - in: path
+          name: user-id
+          schema:
+            type: integer
+          required: true
+          description: user identifier
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+              required:
+                - name
+                - email
+      responses:
+        '200':
+          description: The user was updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: number
+                  name:
+                    type: string
+                  email:
+                    type: string
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+        '404':
+          description: The User was Not Found.
+        '422':
+          description: Unprocessable Entity
+    get:
+      summary: Get user
+      tags:
+        - Users
+      parameters:
+        - in: path
+          name: user-id
+          schema:
+            type: integer
+          required: true
+          description: user identifier
+      responses:
+        '200':
+          description: The User was updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: number
+                  name:
+                    type: string
+                  email:
+                    type: string
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+        '404':
+          description: The User was Not Found.
+    delete:
+      summary: Delete user
+      tags:
+        - Users
+      parameters:
+        - in: path
+          name: user-id
+          schema:
+            type: integer
+          required: true
+          description: user identifier
+      responses:
+        '204':
+          description: The User was deleted successfully.
+        '404':
+          description: The User was Not Found.
