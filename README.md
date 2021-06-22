@@ -1,7 +1,7 @@
 docker-ms-api
 ======
 
-Demo Rails API microservice.  This API is set-up to run in a docker contaier which installs Ruby, Rails, Sqlite3 and integrates Swagger to document the API.
+Demo Rails API microservice.  This API is set-up to run in a docker container which installs Ruby, Rails, Sqlite3 and integrates Swagger to document the API.
 
 The demo shows the following simple scenarios:
 * GET /test endpoint to return static JSON
